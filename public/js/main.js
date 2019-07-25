@@ -1,9 +1,9 @@
-function showHide(e) {
-    this.x = e.target.nextElementSibling;
+document.addEventListener("DOMContentLoaded", function(event) {
+    const headers = document.getElementsByClassName("header");
 
-    if (this.x.style.display === "none") {
-        this.x.style.display = "block";
-    } else {
-        this.x.style.display = "none";
-    }
-}
+    [].forEach.call(headers, el => {
+        el.addEventListener("click", e => {
+            e.target.nextElementSibling.classList.toggle("hidden");
+        });
+    });
+});

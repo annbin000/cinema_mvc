@@ -2,8 +2,8 @@
 
 <span>Cinema name:</span>
 <?php foreach ($cinemas as $cinema): ?>
-    <div onclick="showHide(event)"><?= $cinema->getName() ?></div>
-    <div id="show-list" style="display: none;">
+    <div class="header"><?= $cinema->getName() ?></div>
+    <div class="list hidden">
         <ul>
             <li>List item 1</li>
             <li>List item 2</li>

@@ -13,7 +13,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="<?= BASE_URL ?>public/css/main.css">
-    <script src="/public/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="<?= BASE_URL ?>/public/js/main.js"></script>
     <title><?= $this->getTitle(); ?></title>
 </head>
 <body>
@@ -21,6 +22,7 @@
 <section>
     <?= $view->render(); ?>
 </section>
+
 
 </body>
 </html>
