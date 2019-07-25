@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  php-apache:
+    build:
+      args:
+        - DEVELOPER_MODE=1 # needed for the build stage
+    user: docker:docker
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    extra_hosts:
+      # For Linux users only till docker.host.internal is not available by default
+      # https://github.com/docker/libnetwork/pull/2348/files
+      - "host.docker.internal:172.17.0.1"
+    environment:
+      # Must be set to some of the domains for xdebug to work. Should have server configured in
+      # Preferences > Language and Frameworks > PHP > Servers
+      # Or just run the project with the same domain and debug enabled in the browser
+      - PHP_IDE_CONFIG=serverName=cinema.com
+#      - PHP_XDEBUG_ENABLED=1 # needed for the entrypoint script
+
+# IMPORTANT FOR MAC USERS!!!
+# ALL BELOW is for Mac only to enable docker sync stack
+#    volumes:
+#      - cinema.com-sync:/var/www/html:nocopy
+
+#volumes:
+#  cinema.com-sync:
+#    external: true

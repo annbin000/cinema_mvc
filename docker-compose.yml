@@ -1,0 +1,70 @@
+#    export LC_ALL=en_US.UTF-8
+#    export LANG=en_US.UTF-8
+#    export LANGUAGE=en_US.UTF-8
+#
+#
+# https://github.com/FiloSottile/mkcert
+# sudo apt-get install install libnss3-tools build-essential
+# sudo apt install linuxbrew-wrapper
+# echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >> ~/.bashrc
+# echo 'export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"' >> ~/.bashbashrc
+# echo 'export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"' >> ~/.bashbashrc
+# brew install gcc
+# brew instal mkcert
+#
+#
+# SSL certificates for development
+# $ mkcert cinema.com www.cinema.com
+#
+# DEVELOPMENT:
+# $ docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d
+#
+# PRODUCTION:
+# $ docker-compose up -d
+#
+# MacOS (development only)
+# docker-sync-stack start
+version: '3.7'
+services:
+  php-apache:
+    container_name: cinema.com
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        # needed for the build stage
+        # Install memcached inside container if needed. Better to use external Memcached container and only have
+        # php extension to connect to it
+        - MEMCACHED=0
+    restart: always
+    labels:
+      # - traefik.enable=false
+      - traefik.http.frontend.rule=Host:cinema.com,www.cinema.com
+      - traefik.http.frontend.entryPoints=http
+      - traefik.https.frontend.rule=Host:cinema.com,www.cinema.com
+      - traefik.https.frontend.entryPoints=https
+      - traefik.https.protocol=https
+      - traefik.https.port=443
+    # Must add extra_hosts to be written to /etc/hosts - otherwise containerized application can not curl itself
+    extra_hosts:
+      - "cinema.com www.cinema.com:127.0.0.1"
+#    links:
+#      - memcached
+    external_links:
+      - mysql57:mysql
+#    networks:
+#      - reverse-proxy
+    network_mode: bridge
+    volumes:
+      - .:/var/www/html
+      - /misc/share/ssl:/certs
+      - ./docker/virtual-host.conf:/etc/apache2/sites-enabled/virtual-host.conf
+
+#  memcached:
+#    image: 'memcached:1.5'
+#    network_mode: bridge
+#    restart: always
+
+#networks:
+#  reverse-proxy:
+#    external: true
