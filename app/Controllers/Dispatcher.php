@@ -16,7 +16,7 @@ class Dispatcher
      */
     public function dispatch($routes, $p)
     {
-        $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+        $requestUri = $_SERVER['REQUEST_URI'] ? parse_url($_SERVER['REQUEST_URI'])['path'] : '';
         $controllerName = $requestUri ? ucfirst(explode('/', trim($requestUri, '/'))[0]) : 'Index';
 
         $controllerClass = "\App\Controllers\\{$controllerName}Controller";

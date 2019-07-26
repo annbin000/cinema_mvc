@@ -10,7 +10,7 @@ class CinemaService
 {
     public function findAllCinema() {
         $sql = <<<SQL
-        select cinema.name as `name` from cinema
+        select cinema.* from cinema
         SQL;
 
         $dbh = Db::getDbh();

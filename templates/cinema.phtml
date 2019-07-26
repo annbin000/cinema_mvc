@@ -1,13 +1,12 @@
-<?php /** @var array $cinemas */?>
-
+<?php /** @var \App\Models\Cinema[] $cinemas */ ?>
 <span>Cinema name:</span>
 <?php foreach ($cinemas as $cinema): ?>
-    <div class="header"><?= $cinema->getName() ?></div>
+    <div class="header" data-cinema-id="<?= $cinema->getId() ?>"><?= $cinema->getName() ?></div>
     <div class="list hidden">
         <ul>
-            <li>List item 1</li>
-            <li>List item 2</li>
-            <li>List item 3</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
         </ul>
     </div>
 <?php endforeach; ?>
