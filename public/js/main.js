@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 data: {
                     id: e.currentTarget.dataset.cinemaId
                 },
-                success: function(data){
-                    alert(data);
-                }
+                // success: function(data){
+                //     alert(data);
+                // }
             });
             e.target.nextElementSibling.classList.toggle("hidden");
         });
