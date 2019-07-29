@@ -16,16 +16,8 @@ class CinemaController
     {
         $cinemaService = new CinemaService();
         $view = new View();
-        $result = $view->show(Cinema::class, ['cinemas' => $cinemaService->findAllCinema()]);
+        $result = $view->show(Cinema::class);
 
         return $result;
-//
-//        if (empty($_GET['page'])) {
-//            $currentPage = 1;
-//            $_GET['page'] = 1;
-//        } else {
-//            $currentPage = $_GET['page'];
-//        }
-
     }
 }
