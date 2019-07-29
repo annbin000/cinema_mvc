@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Services\ComeOutService;
+use App\Views\ComeOut;
 use App\Views\View;
 
 class ComeOutController
@@ -13,9 +14,8 @@ class ComeOutController
      * отдает данные аджакс запросу с данными фильмов в кинчиках
      */
     public function execute() {
-        $comeOutService = new ComeOutService();
-        $view = new View();
-        $result = $view->show(\App\Views\ComeOut::class, ['comeOut' => $comeOutService->findAllRelise()]);
+        $view = new ComeOut();
+        $result = $view->render();
         return $result;
     }
 }

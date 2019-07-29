@@ -8,10 +8,9 @@ class View
      * 3й аргумент нужен для доступа переменных в View
      * @param $page
      * @param $title
-     * @param array $vars
      * @param array|null $otherVars
      */
-    public function show(string $viewClass, array $vars = []) {
+    public function show(string $viewClass) {
         //на случий дополнительных данных
 //        if (!empty($vars)) {
 //            extract($vars);
@@ -25,7 +24,7 @@ class View
 
         ob_start();
 
-        $view = new $viewClass($vars);
+        $view = new $viewClass();
         include("templates/base.php");
 
         return ob_get_clean();

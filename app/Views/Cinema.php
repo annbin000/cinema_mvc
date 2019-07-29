@@ -2,31 +2,20 @@
 
 namespace App\Views;
 
-class Cinema implements ViewInterface
+use App\Services\CinemaService;
+use App\Services\ComeOutService;
+
+class Cinema extends AbstractBlock implements ViewInterface
 {
     /**
-     * @var array
+     * @return array
      */
-    private $vars;
-
-    /**
-     * Cinema constructor.
-     * @param array $vars
-     */
-    public function __construct(array $vars = [])
+    protected function getVars(): array
     {
-        $this->vars = $vars;
-    }
+        $cinemaService = new CinemaService();
 
-
-
-    public function render(): string
-    {
-        extract($this->vars);
-
-        ob_start();
-        include "templates/cinema.phtml";
-
-        return ob_get_clean();
+        return [
+            'cinemas' => $cinemaService->findAllCinema()
+        ];
     }
 }

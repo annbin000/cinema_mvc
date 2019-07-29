@@ -1,10 +1,15 @@
+<?php /** @var \App\Views\Cinema $this */ ?>
 <?php /** @var \App\Models\Cinema[] $cinemas */ ?>
+<?php
+/** @var \App\Views\ComeOut $comeOut */
+$comeOut = $this->getBlock(\App\Views\ComeOut::class);
+?>
 <span>Cinema name:</span>
 <?php foreach ($cinemas as $cinema): ?>
     <div class="header" data-cinema-id="<?= $cinema->getId() ?>"><?= $cinema->getName() ?></div>
     <div class="list hidden">
-        <ul>
-            <li>1</li>
+        <ul class="cinema-data">
+            <?php // $comeOut->setCinemaFilter($cinema->getId())->render(); ?>
         </ul>
     </div>
 <?php endforeach; ?>

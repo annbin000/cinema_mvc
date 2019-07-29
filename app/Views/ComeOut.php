@@ -2,23 +2,30 @@
 
 namespace App\Views;
 
-class ComeOut implements ViewInterface
-{
-    /**
-     * @var array
-     */
-    private $vars;
+use App\Services\ComeOutService;
 
-    public function __construct(array $vars = [])
+class ComeOut extends AbstractBlock implements ViewInterface
+{
+    private $cinemaId;
+
+    /**
+     * @param int $cinemaId
+     * @return $this
+     */
+    public function setCinemaFilter(int $cinemaId): ComeOut
     {
-        $this->vars = $vars;
+        $this->cinemaId = $cinemaId;
+
+        return $this;
     }
 
-    public function render(): string
+    protected function getVars(): array
     {
-        extract($this->vars);
-        ob_start();
-        include "templates/comeout.phtml";
-        return ob_get_clean();
+        $cinemaId = $this->cinemaId ?? (int) $_GET['id'];
+        $comeOutService = new ComeOutService();
+
+        return [
+            'comeOut' => $comeOutService->findAllRelise($cinemaId)
+        ];
     }
 }

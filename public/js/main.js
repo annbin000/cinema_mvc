@@ -3,17 +3,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     [].forEach.call(headers, el => {
         el.addEventListener("click", e => {
+            let list = $(e.currentTarget).next().find('ul');
+
             $.ajax({
                 type: "GET",
                 url: '/ComeOut',
                 data: {
                     id: e.currentTarget.dataset.cinemaId
                 },
-                // success: function(data){
-                //     alert(data);
-                // }
+                success: function(data) {
+                    list.html(data);
+                    e.target.nextElementSibling.classList.toggle("hidden");
+                }
             });
-            e.target.nextElementSibling.classList.toggle("hidden");
         });
     });
 });
