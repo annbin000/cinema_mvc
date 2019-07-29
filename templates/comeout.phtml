@@ -1,4 +1,4 @@
 <?php /** @var \App\Models\Films[] $comeOut */ ?>
 <?php foreach ($comeOut as $film): ?>
-    <li><?= $film->getName() ?></li>
+    <li><a href="<?= $film->getId() ?>"><?= $film->getName() ?></a></li>
 <?php endforeach; ?>
