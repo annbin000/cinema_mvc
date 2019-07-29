@@ -13,7 +13,7 @@ class Film extends AbstractBlock implements ViewInterface
         $filmService = new FilmService();
 
         return [
-            'films' => $filmService->findOneFilm()
+            'film' => $filmService->findOneFilm()
         ];
     }
 }

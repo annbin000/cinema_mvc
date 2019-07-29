@@ -1,4 +1,6 @@
-<?php /** @var \App\Views\Film[] $films */ ?>
+<?php /** @var \App\Models\Films $films */ ?>
 <?php foreach ($films as $film): ?>
-
+<ul>
+    <li>Имя: <?= $films->getName() ?></li>
+</ul>
 <?php endforeach; ?>

@@ -27,8 +27,6 @@ class Dispatcher
 
         $controller = new $controllerClass;
 
-//        if (!$controller instanceof ControllerInterface)
-
         $response = $controller->execute();
         echo $response;
     }

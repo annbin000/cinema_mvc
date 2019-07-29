@@ -16,6 +16,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     e.target.nextElementSibling.classList.toggle("hidden");
                 }
             });
+
+            // $.ajax({
+            //     type: "GET",
+            //     url: '/Film',
+            //     data: {
+            //         id: e.currentTarget.dataset.id
+            //     },
+            //     success: function(data) {
+            //         console.log(data);
+            //     }
+            // });
         });
     });
 });

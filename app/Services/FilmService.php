@@ -7,7 +7,7 @@ use App\Models\Db;
 
 class FilmService
 {
-    public function findOneFilm(int $id)
+    public function findOneFilm(int $id = 0)
     {
         $sql = <<<SQL
             select films.*
