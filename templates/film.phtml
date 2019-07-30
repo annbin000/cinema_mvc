@@ -1,6 +1,9 @@
-<?php /** @var \App\Models\Films $films */ ?>
-<?php foreach ($films as $film): ?>
+<?php /** @var \App\Models\Films $film */ ?>
 <ul>
-    <li>Имя: <?= $films->getName() ?></li>
+    <li>Имя: <?= $film->getName() ?></li>
+    <li>Продюсер: <?= $film->getProducer() ?></li>
+    <li>Релиз: <?= $film->getRelese() ?></li>
+    <li>Бюджет: <?= $film->getBudget() ?></li>
+    <li>Сборы: <?= $film->getBoxOffice() ?></li>
 </ul>
-<?php endforeach; ?>
+

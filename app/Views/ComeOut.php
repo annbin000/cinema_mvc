@@ -12,12 +12,7 @@ class ComeOut extends AbstractBlock implements ViewInterface
      * @param int $cinemaId
      * @return $this
      */
-    public function setCinemaFilter(int $cinemaId): ComeOut
-    {
-        $this->cinemaId = $cinemaId;
 
-        return $this;
-    }
 
     protected function getVars(): array
     {

@@ -11,9 +11,6 @@ class IndexController
      */
     public function home()
     {
-
-
-
         if (empty($_GET['page'])) {
             $currentPage = 1;
             $_GET['page'] = 1;
